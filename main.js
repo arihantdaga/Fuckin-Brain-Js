@@ -3,10 +3,12 @@ const path = require("path");
 
 const SPACE_BUFFER = 30000;
 const space = new Uint8Array(SPACE_BUFFER);
+var brainfuck = /[<>\[\].,+-]/g;
 
 function main(program) {
   console.log("========== Starting BrainFuck ========== ");
-  let pA = Array.from(program);
+  let pA = program.match(brainfuck);
+  console.log(JSON.stringify(pA));
   interpret(pA);
   console.log("========== Program FInished ==========");
 }
@@ -60,8 +62,6 @@ function interpret(symbols) {
     loop_start_point++;
   }
 }
-
-console.log(process.argv);
 if (process.argv.length > 2) {
   const file = process.argv[2];
   fs.readFile(path.join(__dirname, file), (err, content) => {
@@ -72,6 +72,3 @@ if (process.argv.length > 2) {
     main(content.toString());
   });
 }
-
-// let program = ">+++++++++[<++++++++>-]<.";
-// main(program);
