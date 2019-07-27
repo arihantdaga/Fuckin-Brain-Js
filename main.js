@@ -1,16 +1,20 @@
+const fs = require("fs");
+const path = require("path");
+
 const SPACE_BUFFER = 30000;
 const space = new Uint8Array(SPACE_BUFFER);
 
 function main(program) {
   console.log("========== Starting BrainFuck ========== ");
   let pA = Array.from(program);
-  interpret(0, pA);
+  interpret(pA);
   console.log("========== Program FInished ==========");
 }
 
 function interpret(symbols) {
   let loop_start_point = 0;
   let loopStacks = [];
+  let current_position = 0;
   while (loop_start_point != symbols.length) {
     let symbol = symbols[loop_start_point];
 
@@ -41,10 +45,6 @@ function interpret(symbols) {
           while (symbols[loop_start_point] != "]") {
             loop_start_point++;
           }
-          console.log(
-            "[DEBUG] loop_start_point at end of the loop",
-            loop_start_point
-          );
         }
         break;
       case "]":
@@ -61,5 +61,17 @@ function interpret(symbols) {
   }
 }
 
-let program = ">+++++++++[<++++++++>-]<.";
-main(program);
+console.log(process.argv);
+if (process.argv.length > 2) {
+  const file = process.argv[2];
+  fs.readFile(path.join(__dirname, file), (err, content) => {
+    if (err) {
+      console.error("Error in reading the file specified");
+      throw err;
+    }
+    main(content.toString());
+  });
+}
+
+// let program = ">+++++++++[<++++++++>-]<.";
+// main(program);
