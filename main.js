@@ -26,7 +26,7 @@ function interpret(symbols) {
         space[current_position]--;
         break;
       case ".":
-        console.log(String.fromCharCode(space[current_position]));
+        process.stdout.write(String.fromCharCode(space[current_position]));
         break;
       case ",":
         // TODO - Implement
