@@ -6,11 +6,11 @@ const space = new Uint8Array(SPACE_BUFFER);
 var brainfuck = /[<>\[\].,+-]/g;
 
 function main(program) {
-  console.log("========== Starting BrainFuck ========== ");
+  // console.log("========== Starting BrainFuck ========== ");
   let pA = program.match(brainfuck);
-  console.log(JSON.stringify(pA));
   interpret(pA);
-  console.log("========== Program FInished ==========");
+  process.stdout.write("\n");
+  // console.log("\n ========== Program FInished ==========");
 }
 
 function interpret(symbols) {
@@ -29,6 +29,7 @@ function interpret(symbols) {
         break;
       case ".":
         process.stdout.write(String.fromCharCode(space[current_position]));
+        // console.log(space[current_position]);
         break;
       case ",":
         // TODO - Implement
@@ -72,3 +73,18 @@ if (process.argv.length > 2) {
     main(content.toString());
   });
 }
+
+// let program = `
+// >++++++++++++++++++++[<+++++>-]<++++.
+// ---.
+// >+[<+++++>-]<++.
+// .
+// +++.
+// >+++++++++++++++[<----->-]<----.
+// >+++++++++++++++++[<+++++>-]<++.
+// >+[<----->-]<---.
+// +++.
+// >+[<----->-]<-.
+// >+[<----->-]<---.`;
+
+// main(program);
