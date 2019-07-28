@@ -34,8 +34,8 @@ function generate_brainfuck_message(message) {
 
 if (process.argv.length > 2) {
   const message = process.argv[2];
-  let file = process.argv[3] || "out.jsbf";
-  if (file.split("").pop() != "jsbf") file += ".jsbf";
+  let file = process.argv[3] || "out.bf";
+  if (file.split("").pop() != "bf") file += ".bf";
   fs.writeFile(
     path.join(__dirname, file),
     generate_brainfuck_message(message),
