@@ -29,7 +29,6 @@ function interpret(symbols) {
         break;
       case ".":
         process.stdout.write(String.fromCharCode(space[current_position]));
-        // console.log(space[current_position]);
         break;
       case ",":
         // TODO - Implement
@@ -73,18 +72,3 @@ if (process.argv.length > 2) {
     main(content.toString());
   });
 }
-
-// let program = `
-// >++++++++++++++++++++[<+++++>-]<++++.
-// ---.
-// >+[<+++++>-]<++.
-// .
-// +++.
-// >+++++++++++++++[<----->-]<----.
-// >+++++++++++++++++[<+++++>-]<++.
-// >+[<----->-]<---.
-// +++.
-// >+[<----->-]<-.
-// >+[<----->-]<---.`;
-
-// main(program);

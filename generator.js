@@ -47,5 +47,3 @@ if (process.argv.length > 2) {
     }
   );
 }
-
-// console.log(generate_brainfuck_message("hello world"));
