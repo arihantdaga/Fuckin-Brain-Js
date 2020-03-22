@@ -17,14 +17,14 @@ function generate_brainfuck_message(message) {
   for (let i = 0; i < length; i++) {
     const asci = message.charCodeAt(i);
     const dif = asci - prev;
-    let sign = dif > 0 ? "+" : "-";
+    let sign = dif > 0 ? "ए" : "ऐ";
     if (Math.abs(dif) <= advance_count) {
-      codeLines.push(sign.repeat(Math.abs(dif)) + ".");
+      codeLines.push(sign.repeat(Math.abs(dif)) + "उ");
     } else {
       codeLines.push(
-        `>${"+".repeat(Math.abs(dif) / advance_count)}[<${sign.repeat(
+        `आ${"ए".repeat(Math.abs(dif) / advance_count)}इअ${sign.repeat(
           advance_count
-        )}>-]<${sign.repeat(Math.abs(dif) % advance_count)}.`
+        )}आऐईअ${sign.repeat(Math.abs(dif) % advance_count)}उ`
       );
     }
     prev = asci;

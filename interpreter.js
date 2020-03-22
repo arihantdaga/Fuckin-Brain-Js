@@ -3,12 +3,14 @@ const path = require("path");
 
 const SPACE_BUFFER = 30000;
 const space = new Uint8Array(SPACE_BUFFER);
-var brainfuck = /[<>\[\].,+-]/g;
+// var brainfuck = /[<>\[\].,+-]/g;
+var bharat = /[अआइईउऊएऐ]/g
 
 function main(program) {
   // console.log("========== Starting BrainFuck ========== ");
-  let pA = program.match(brainfuck);
-  interpret(pA);
+  let pA = program.match(bharat);
+  console.log(pA);
+  interpret(JSON.stringify(pA));
   process.stdout.write("\n");
   // console.log("\n ========== Program FInished ==========");
 }
@@ -21,25 +23,25 @@ function interpret(symbols) {
     let symbol = symbols[loop_start_point];
 
     switch (symbol) {
-      case "+":
+      case "ए":
         space[current_position]++;
         break;
-      case "-":
+      case "ऐ":
         space[current_position]--;
         break;
-      case ".":
+      case "उ":
         process.stdout.write(String.fromCharCode(space[current_position]));
         break;
-      case ",":
+      case "ऊ":
         // TODO - Implement
         break;
-      case ">":
+      case "आ":
         current_position++;
         break;
-      case "<":
+      case "अ":
         current_position--;
         break;
-      case "[":
+      case "इ":
         if (space[current_position]) {
           loopStacks.push(loop_start_point);
         } else {
@@ -49,7 +51,7 @@ function interpret(symbols) {
           }
         }
         break;
-      case "]":
+      case "ई":
         if (space[current_position]) {
           let pos = loopStacks.pop();
           loop_start_point = pos;
